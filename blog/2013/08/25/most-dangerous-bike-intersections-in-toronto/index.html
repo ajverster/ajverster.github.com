@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Most Dangerous Bike Intersections in Toronto - Adventures in Data</title>
+  <meta name="author" content="Adrian Verster">
+
+  
+  <meta name="description" content="I am a cyclist in Toronto, and I find it quite frightening at times with all the traffic. I hear a lot about cycle accidents in and around the city, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ajverster.github.com/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Adventures in Data" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in Data</a></h1>
+  
+    <h2>A blog about playing with data</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ajverster.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Most Dangerous Bike Intersections in Toronto</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-25T12:31:00-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I am a cyclist in Toronto, and I find it quite frightening at times with all the traffic. I hear a lot about cycle accidents in and around the city, and as a data nerd I was happy to find that the Toronto Traffic Safety Unit has been collecting GPS tagged data on where bicycle accidents have been occurring throughout the city. This is only the reported subset of all the accidents, but it represents about 31000 collisions. Here I am using that data to try and determine where the most dangerous cycle intersections in Toronto are.</p>
+
+<p>What I did it to use the GPS coordinates recorded for the accidents to map them to their closest intersection. The measurement for each intersection contains accidents at that intersection as well as on the street nearby. Since the intersections with the highest number of accidents are just those with the highest amount of traffic I normalized with traffic data from the Toronto Traffic Safety Unit. In doing so we run into a well known statistical phenomenon which is that intersections with the smallest number of accidents dominate, because of the noise in the observation.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Graph1.png" width="565" height="341"></p>
+
+<p>In order to deal with this we can use Bayesian statistics; I&#8217;m putting a prior on what we think the observation should be we can prevent the noise in small sample size intersections from dominating. I&#8217;m using a technique called Empirical Bayesian analysis which calculates a prior from the average of all the intersections in the dataset.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Graph2.png" width="565" height="341"></p>
+
+<p>What do we end up with after doing this? The following is a list of the most dangerous intersections we recover with this technique.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Image1.png" width="200" height="100"></p>
+
+<p>Many of the intersections we see are on Bloor or Queen which are significant on the routes that do not have bike lanes.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Image2.png" width="200" height="100"></p>
+
+<p>All of these intersections are not straight.</p>
+
+<p>Avenue and Lonsdale <br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/AvenueAndLonsadale.png" width="400" height="200"></p>
+
+<p>Bloor and Parliament <br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/BloorAndParliament.png" width="400" height="200"></p>
+
+<p>Broadview and Gerrard <br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/BroadviewAndGerrard.png" width="400" height="200"></p>
+
+<p>Stay safe, here&#8217;s a list of the top 50 most dangerous intersections that I determined using this method.<br>
+<a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/Top50MostDangerousIntersections.xls">Top50 (Excel)</a><br>
+<a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/Top50MostDangerousIntersections.csv">Top50 (csv)</a><br></p>
+
+<p>As requested, a complete List.<br>
+<a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/MostDangerousIntersections.csv">Complete List (csv)</a><br></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Adrian Verster</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-25T12:31:00-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ajverster.github.com/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto/" data-via="ajverster" data-counturl="http://ajverster.github.com/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/31/visualizing-one-day-of-bixi-activity/" title="Previous Post: Visualizing One Day of Bixi Activity">&laquo; Visualizing One Day of Bixi Activity</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/09/16/population-density-maps-in-canadian-cities/" title="Next Post: Population Density Maps in Canadian Cities">Population Density Maps in Canadian Cities &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me: Adrian Verster</h1>
+  <p>I am currently a PhD student studying genomics at the University of Toronto.</p>
+  <p><a href = "https://twitter.com/ajverster">Twitter</a>, <a href = "https://github.com/ajverster">Github</a>.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/16/population-density-maps-in-canadian-cities/">Population Density Maps in Canadian Cities</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto/">Most Dangerous Bike Intersections in Toronto</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/31/visualizing-one-day-of-bixi-activity/">Visualizing One Day of Bixi Activity</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/01/redditinteractionmap/">A subreddit Interaction Map</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/29/introduction/">Introduction</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Adrian Verster -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'datadogma';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ajverster.github.com/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto/';
+        var disqus_url = 'http://ajverster.github.com/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A subreddit Interaction Map - Adventures in Data</title>
+  <meta name="author" content="Adrian Verster">
+
+  
+  <meta name="description" content="I&#8217;m a redditor, so naturally I was thrilled to find a data set of voting patterns from reddit users who have made their votes public. In this &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://ajverster.github.com/blog/2013/04/01/redditinteractionmap">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Adventures in Data" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in Data</a></h1>
+  
+    <h2>A blog about playing with data</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ajverster.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Subreddit Interaction Map</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-01T19:35:00-04:00" pubdate data-updated="true">Apr 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;m a redditor, so naturally I was thrilled to find a data set of voting patterns from reddit users who have made their votes public. In this post I am showing a visualization of that data. What I did, is try and find groups of subreddits which are used by the same user. Specifically, for every pair of subreddits I asked if users use them both more often than would be expected by chance (a chi-squared test, with multiple test correction). Then I took the residual of the test (a measure of how many more users vote in both than expected by chance) and used that as a link between the 2 subreddits.</p>
+
+<p>Next I ran a clustering algorithm (Markov clustering) to break up this graph into manageable groups of subreddits. Below is the full graph, I&#8217;ve colored a subset of the clusters, and its tough to see from this zoom, but I&#8217;m going to go through the groups in more depth below. Subreddits in gray ended up in smaller clusters.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/RedditMatrixList.png" width="1300" height="813">
+ <a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/RedditNetworkHighRes.png">High Resolution Version</a></p>
+
+<p>This view contains a number of the major subreddits, in particulary subreddits relating to politics (GREEN) as well as “depth” topics (RED, PINK YELLOW).</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Depth.png" width="1300" height="813"></p>
+
+<p>This group has stuff like “pics”, “funny”, “aww” and I call it the lighter side of reddit (PURPLE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Light.png" width="1300" height="813"></p>
+
+<p>This is a whole bunch of subreddits relating to computer programming (BLUE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Programming.png" width="1300" height="813"></p>
+
+<p>This is a group of pornographic subreddits (LIGHT BLUE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Porn.png" width="1300" height="813"></p>
+
+<p>I am going to call this group “safe for work porn” (ORANGE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/SFWPorn.png" width="1300" height="813"></p>
+
+<p>This is a group of computer game subreddits (YELLOW) as well as non-gaming role playing and fantasy (GREEN).</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Gaming.png" width="1300" height="813"></p>
+
+<p>In this corner we have music related subreddits (SHADES OF ORANGE).</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Music.png" width="1300" height="813"></p>
+
+<p>That&#8217;s all that I&#8217;m going to comment on, there are quite a few more groups that I don&#8217;t have enough space to go through, but I&#8217;ve attached the full list of clusters that come out of this
+ <a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/RedditMatrixList_MarkovClusters.tab">Full list of clusters</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Adrian Verster</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-01T19:35:00-04:00" pubdate data-updated="true">Apr 1<span>st</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ajverster.github.com/blog/2013/04/01/redditinteractionmap/" data-via="ajverster" data-counturl="http://ajverster.github.com/blog/2013/04/01/redditinteractionmap/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/29/introduction/" title="Previous Post: Introduction">&laquo; Introduction</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/07/31/visualizing-one-day-of-bixi-activity/" title="Next Post: Visualizing One Day of Bixi Activity">Visualizing One Day of Bixi Activity &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me: Adrian Verster</h1>
+  <p>I am currently a PhD student studying genomics at the University of Toronto.</p>
+  <p><a href = "https://twitter.com/ajverster">Twitter</a>, <a href = "https://github.com/ajverster">Github</a>.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/16/population-density-maps-in-canadian-cities/">Population Density Maps in Canadian Cities</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto/">Most Dangerous Bike Intersections in Toronto</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/31/visualizing-one-day-of-bixi-activity/">Visualizing One Day of Bixi Activity</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/01/redditinteractionmap/">A subreddit Interaction Map</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/29/introduction/">Introduction</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Adrian Verster -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'datadogma';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ajverster.github.com/blog/2013/04/01/redditinteractionmap/';
+        var disqus_url = 'http://ajverster.github.com/blog/2013/04/01/redditinteractionmap/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

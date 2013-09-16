@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Adventures in Data]]></title>
+  <link href="http://ajverster.github.com/atom.xml" rel="self"/>
+  <link href="http://ajverster.github.com/"/>
+  <updated>2013-09-16T11:18:22-04:00</updated>
+  <id>http://ajverster.github.com/</id>
+  <author>
+    <name><![CDATA[Adrian Verster]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Population Density Maps in Canadian Cities]]></title>
+    <link href="http://ajverster.github.com/blog/2013/09/16/population-density-maps-in-canadian-cities/"/>
+    <updated>2013-09-16T11:14:00-04:00</updated>
+    <id>http://ajverster.github.com/blog/2013/09/16/population-density-maps-in-canadian-cities</id>
+    <content type="html"><![CDATA[<pre><code>I'm a big fan of maps, in particularly those displaying data. One of the best sources of data out there is the Canadian census, which I'm using here to give a view of population density in different cities. What I've put onto these maps is the population number divided by the area each polygon creates, which is a measurement of population density. The scales aren't consistent between cities, so don't compare across maps.
+</code></pre>
+
+<p>Vancouver<br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/PopulationMaps/VancouverPopulationDensity.png" width="4000" height="2613"></p>
+
+<p>Toronto<br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/PopulationMaps/TorontoPopulationDensity.png" width="4000" height="2613"></p>
+
+<p>Ottawa<br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/PopulationMaps/OttawaPopulationDensity.png" width="4000" height="2613"></p>
+
+<p>Montreal<br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/PopulationMaps/MontrealPopulationDensity.png" width="4000" height="2613"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Most Dangerous Bike Intersections in Toronto]]></title>
+    <link href="http://ajverster.github.com/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto/"/>
+    <updated>2013-08-25T12:31:00-04:00</updated>
+    <id>http://ajverster.github.com/blog/2013/08/25/most-dangerous-bike-intersections-in-toronto</id>
+    <content type="html"><![CDATA[<p>I am a cyclist in Toronto, and I find it quite frightening at times with all the traffic. I hear a lot about cycle accidents in and around the city, and as a data nerd I was happy to find that the Toronto Traffic Safety Unit has been collecting GPS tagged data on where bicycle accidents have been occurring throughout the city. This is only the reported subset of all the accidents, but it represents about 31000 collisions. Here I am using that data to try and determine where the most dangerous cycle intersections in Toronto are.</p>
+
+<p>What I did it to use the GPS coordinates recorded for the accidents to map them to their closest intersection. The measurement for each intersection contains accidents at that intersection as well as on the street nearby. Since the intersections with the highest number of accidents are just those with the highest amount of traffic I normalized with traffic data from the Toronto Traffic Safety Unit. In doing so we run into a well known statistical phenomenon which is that intersections with the smallest number of accidents dominate, because of the noise in the observation.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Graph1.png" width="565" height="341"></p>
+
+<p>In order to deal with this we can use Bayesian statistics; I&#8217;m putting a prior on what we think the observation should be we can prevent the noise in small sample size intersections from dominating. I&#8217;m using a technique called Empirical Bayesian analysis which calculates a prior from the average of all the intersections in the dataset.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Graph2.png" width="565" height="341"></p>
+
+<p>What do we end up with after doing this? The following is a list of the most dangerous intersections we recover with this technique.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Image1.png" width="200" height="100"></p>
+
+<p>Many of the intersections we see are on Bloor or Queen which are significant on the routes that do not have bike lanes.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/Image2.png" width="200" height="100"></p>
+
+<p>All of these intersections are not straight.</p>
+
+<p>Avenue and Lonsdale <br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/AvenueAndLonsadale.png" width="400" height="200"></p>
+
+<p>Bloor and Parliament <br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/BloorAndParliament.png" width="400" height="200"></p>
+
+<p>Broadview and Gerrard <br>
+<img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/TorontoCycleIntersections/BroadviewAndGerrard.png" width="400" height="200"></p>
+
+<p>Stay safe, here&#8217;s a list of the top 50 most dangerous intersections that I determined using this method.<br>
+<a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/Top50MostDangerousIntersections.xls">Top50 (Excel)</a><br>
+<a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/Top50MostDangerousIntersections.csv">Top50 (csv)</a><br></p>
+
+<p>As requested, a complete List.<br>
+<a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/MostDangerousIntersections.csv">Complete List (csv)</a><br></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visualizing One Day of Bixi Activity]]></title>
+    <link href="http://ajverster.github.com/blog/2013/07/31/visualizing-one-day-of-bixi-activity/"/>
+    <updated>2013-07-31T18:13:00-04:00</updated>
+    <id>http://ajverster.github.com/blog/2013/07/31/visualizing-one-day-of-bixi-activity</id>
+    <content type="html"><![CDATA[<p>Bixi is a bike sharing service in Toronto, which allows short trips between stations. They provide a live update on the current number of bikes at each station so I downloaded a day&#8217;s worth of data and created an animation showing how many bikes are at each Bixi station. This is my visualization of 24 hours worth of Bixi data from July 30th, 2013. Observe the movement towards the center ~9am and the movement back ~6pm.</p>
+
+<p>There was a request for the same map but with the absolute number of bikes which is <a href="https://raw.github.com/ajverster/ajverster.github.com/master/images/BixiImages/BixiOccupancyAnimation_NBikes.gif">Here</a></p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/BixiImages/BixiOccupancyAnimation.gif" width="500" height="500"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A subreddit Interaction Map]]></title>
+    <link href="http://ajverster.github.com/blog/2013/04/01/redditinteractionmap/"/>
+    <updated>2013-04-01T19:35:00-04:00</updated>
+    <id>http://ajverster.github.com/blog/2013/04/01/redditinteractionmap</id>
+    <content type="html"><![CDATA[<p>I&#8217;m a redditor, so naturally I was thrilled to find a data set of voting patterns from reddit users who have made their votes public. In this post I am showing a visualization of that data. What I did, is try and find groups of subreddits which are used by the same user. Specifically, for every pair of subreddits I asked if users use them both more often than would be expected by chance (a chi-squared test, with multiple test correction). Then I took the residual of the test (a measure of how many more users vote in both than expected by chance) and used that as a link between the 2 subreddits.</p>
+
+<p>Next I ran a clustering algorithm (Markov clustering) to break up this graph into manageable groups of subreddits. Below is the full graph, I&#8217;ve colored a subset of the clusters, and its tough to see from this zoom, but I&#8217;m going to go through the groups in more depth below. Subreddits in gray ended up in smaller clusters.</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/RedditMatrixList.png" width="1300" height="813">
+ <a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/RedditNetworkHighRes.png">High Resolution Version</a></p>
+
+<p>This view contains a number of the major subreddits, in particulary subreddits relating to politics (GREEN) as well as “depth” topics (RED, PINK YELLOW).</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Depth.png" width="1300" height="813"></p>
+
+<p>This group has stuff like “pics”, “funny”, “aww” and I call it the lighter side of reddit (PURPLE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Light.png" width="1300" height="813"></p>
+
+<p>This is a whole bunch of subreddits relating to computer programming (BLUE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Programming.png" width="1300" height="813"></p>
+
+<p>This is a group of pornographic subreddits (LIGHT BLUE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Porn.png" width="1300" height="813"></p>
+
+<p>I am going to call this group “safe for work porn” (ORANGE)</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/SFWPorn.png" width="1300" height="813"></p>
+
+<p>This is a group of computer game subreddits (YELLOW) as well as non-gaming role playing and fantasy (GREEN).</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Gaming.png" width="1300" height="813"></p>
+
+<p>In this corner we have music related subreddits (SHADES OF ORANGE).</p>
+
+<p><img src="https://raw.github.com/ajverster/ajverster.github.com/master/images/RedditInteractionImages/Music.png" width="1300" height="813"></p>
+
+<p>That&#8217;s all that I&#8217;m going to comment on, there are quite a few more groups that I don&#8217;t have enough space to go through, but I&#8217;ve attached the full list of clusters that come out of this
+ <a href="https://raw.github.com/ajverster/ajverster.github.com/master/data/RedditMatrixList_MarkovClusters.tab">Full list of clusters</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Introduction]]></title>
+    <link href="http://ajverster.github.com/blog/2013/03/29/introduction/"/>
+    <updated>2013-03-29T16:33:00-04:00</updated>
+    <id>http://ajverster.github.com/blog/2013/03/29/introduction</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve started this blog to share various data analysis projects that I undertake. I am a PhD student who plays a lot with large data sets about where genes are express and what they interact with. But I&#8217;ve realized that my interest in playing with data really isn&#8217;t limited to just this, as they say – don&#8217;t let school interfere with your education.</p>
+]]></content>
+  </entry>
+  
+</feed>
